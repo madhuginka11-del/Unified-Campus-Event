@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
- HEAD
 import "./App.css";
-import { Calendar, Users, Trophy, Plus, QrCode, Settings, User, Bell, Star , Award, QrCode} from "lucide-react";
+import { Calendar, Users, Trophy, Plus, QrCode, Settings, User, Bell, Star } from "lucide-react";
 
 function App() {
   // === DATA (Jain College events from your screenshot + more) ===
@@ -55,11 +54,6 @@ function App() {
   // === STATES ===
   const [events, setEvents] = useState(initialEvents);
   const [filter, setFilter] = useState("All");
-  const badges = [
-  { name: 'First Attendee', icon: '🏆', color: 'yellow' },
-  { name: 'Code Warrior', icon: '💻', color: 'blue' },
-  { name: 'Cultural Star', icon: '🎭', color: 'pink' },
-];
   const [search, setSearch] = useState("");
   const [registeredEvents, setRegisteredEvents] = useState([]);
   const [points, setPoints] = useState(245); // your screenshot points
@@ -71,36 +65,8 @@ function App() {
   const [isOrganizer, setIsOrganizer] = useState(false);
   const [notifications, setNotifications] = useState([]);
 
-
-function App() {
-  const eventsData = [
-    { id: 1, title: "Hackathon", category: "Tech" },
-    { id: 2, title: "Dance Workshop", category: "Cultural" },
-    { id: 3, title: "Football Match", category: "Sports" },
-  ];
-
-  const [events] = useState(eventsData);
-  const [filter, setFilter] = useState("All");
-  const [registeredEvents, setRegisteredEvents] = useState([]);
-  const [points, setPoints] = useState(0);
-
-  const filteredEvents =
-    filter === "All"
-      ? events
-      : events.filter((event) => event.category === filter);
-
-  const handleRSVP = (event) => {
-    const exists = registeredEvents.some((e) => e.id === event.id);
-    if (!exists) {
-      setRegisteredEvents([...registeredEvents, event]);
-      setPoints(points + 10);
-    }
-  };
- 3c4ee7bb365311489ecb7876985fa04540f79cdc
-
   // Load from localStorage
   useEffect(() => {
- HEAD
     const savedRegistered = JSON.parse(localStorage.getItem("registeredEvents")) || [];
     const savedPoints = JSON.parse(localStorage.getItem("points")) || 245;
     const savedProfile = JSON.parse(localStorage.getItem("profile")) || { name: "Moon", email: "moon@jain.ac.in" };
@@ -271,44 +237,7 @@ function App() {
             )}
           </div>
         )}
-{/* ==================== BADGES TAB (YOUR PART) ==================== */}
-{activeTab === 'badges' && (
-  <div>
-    <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
-      <Award size={24} /> My Badges
-    </h2>
 
-    <div className="grid grid-cols-3 gap-4">
-      {badges.map((badge, i) => (
-        <div
-          key={i}
-          className="bg-gray-900 rounded-3xl p-6 text-center hover:scale-105 transition"
-        >
-          <div className="text-6xl mb-4">{badge.icon}</div>
-          <p className="font-medium">{badge.name}</p>
-        </div>
-      ))}
-    </div>
-
-    {/* QR BOX */}
-    <div className="mt-12 bg-gray-900 rounded-3xl p-8 text-center">
-      <QrCode size={80} className="mx-auto mb-4 text-purple-400" />
-
-      <p className="text-lg font-medium mb-2">
-        Show this QR at event entry
-      </p>
-
-      <div className="mx-auto w-52 h-52 bg-white text-black flex items-center justify-center text-xs font-mono border-8 border-purple-500 rounded-2xl">
-        CAMPUS-HUB-2026<br />
-        STUDENT-VERIFIED
-      </div>
-
-      <p className="text-xs text-gray-400 mt-4">
-        Tap to scan in real app
-      </p>
-    </div>
-  </div>
-)}
         {/* Badges Tab */}
         {activeTab === "badges" && (
           <div>
@@ -435,64 +364,6 @@ function App() {
           </div>
         </div>
       )}
-
-    const savedEvents =
-      JSON.parse(localStorage.getItem("registeredEvents")) || [];
-    const savedPoints =
-      JSON.parse(localStorage.getItem("points")) || 0;
-
-    setRegisteredEvents(savedEvents);
-    setPoints(savedPoints);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(
-      "registeredEvents",
-      JSON.stringify(registeredEvents)
-    );
-  }, [registeredEvents]);
-
-  useEffect(() => {
-    localStorage.setItem("points", JSON.stringify(points));
-  }, [points]);
-
-  return (
-    <div style={{ textAlign: "center" }}>
-      <h1>🎓 Campus Event Hub</h1>
-      <h2>Points: {points}</h2>
-
-      <div>
-        {["All", "Tech", "Cultural", "Sports"].map((cat) => (
-          <button key={cat} onClick={() => setFilter(cat)}>
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      <h2>Events</h2>
-      {filteredEvents.map((event) => (
-        <div key={event.id}>
-          <h3>{event.title}</h3>
-          <p>{event.category}</p>
-
-          <button
-            onClick={() => handleRSVP(event)}
-            disabled={registeredEvents.some(
-              (e) => e.id === event.id
-            )}
-          >
-            {registeredEvents.some((e) => e.id === event.id)
-              ? "Registered ✅"
-              : "Register"}
-          </button>
-        </div>
-      ))}
-
-      <h2>My Events</h2>
-      {registeredEvents.map((e) => (
-        <p key={e.id}>{e.title}</p>
-      ))}
- 3c4ee7bb365311489ecb7876985fa04540f79cdc
     </div>
   );
 }
