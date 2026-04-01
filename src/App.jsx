@@ -55,6 +55,11 @@ function App() {
   // === STATES ===
   const [events, setEvents] = useState(initialEvents);
   const [filter, setFilter] = useState("All");
+  const badges = [
+  { name: 'First Attendee', icon: '🏆', color: 'yellow' },
+  { name: 'Code Warrior', icon: '💻', color: 'blue' },
+  { name: 'Cultural Star', icon: '🎭', color: 'pink' },
+];
   const [search, setSearch] = useState("");
   const [registeredEvents, setRegisteredEvents] = useState([]);
   const [points, setPoints] = useState(245); // your screenshot points
@@ -266,7 +271,44 @@ function App() {
             )}
           </div>
         )}
+{/* ==================== BADGES TAB (YOUR PART) ==================== */}
+{activeTab === 'badges' && (
+  <div>
+    <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
+      <Award size={24} /> My Badges
+    </h2>
 
+    <div className="grid grid-cols-3 gap-4">
+      {badges.map((badge, i) => (
+        <div
+          key={i}
+          className="bg-gray-900 rounded-3xl p-6 text-center hover:scale-105 transition"
+        >
+          <div className="text-6xl mb-4">{badge.icon}</div>
+          <p className="font-medium">{badge.name}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* QR BOX */}
+    <div className="mt-12 bg-gray-900 rounded-3xl p-8 text-center">
+      <QrCode size={80} className="mx-auto mb-4 text-purple-400" />
+
+      <p className="text-lg font-medium mb-2">
+        Show this QR at event entry
+      </p>
+
+      <div className="mx-auto w-52 h-52 bg-white text-black flex items-center justify-center text-xs font-mono border-8 border-purple-500 rounded-2xl">
+        CAMPUS-HUB-2026<br />
+        STUDENT-VERIFIED
+      </div>
+
+      <p className="text-xs text-gray-400 mt-4">
+        Tap to scan in real app
+      </p>
+    </div>
+  </div>
+)}
         {/* Badges Tab */}
         {activeTab === "badges" && (
           <div>
