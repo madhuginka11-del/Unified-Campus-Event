@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { Calendar, Users, Trophy, Plus, QrCode, Settings, User, Bell, Star } from "lucide-react";
+import { Calendar, Users, Trophy, Plus, QrCode, Settings, User, Bell, Star ,Award} from "lucide-react";
 
 function App() {
   // === DATA (Jain College events from your screenshot + more) ===
@@ -54,6 +54,11 @@ function App() {
   // === STATES ===
   const [events, setEvents] = useState(initialEvents);
   const [filter, setFilter] = useState("All");
+  const badges = [
+  { name: 'First Attendee', icon: '🏆' },
+  { name: 'Code Warrior', icon: '💻' },
+  { name: 'Cultural Star', icon: '🎭' },
+];
   const [search, setSearch] = useState("");
   const [registeredEvents, setRegisteredEvents] = useState([]);
   const [points, setPoints] = useState(245); // your screenshot points
@@ -240,15 +245,37 @@ function App() {
 
         {/* Badges Tab */}
         {activeTab === "badges" && (
-          <div>
-            <h2 className="text-3xl font-bold mb-6 flex items-center gap-3"><Trophy /> My Badges</h2>
-            <div className="grid grid-cols-3 gap-6">
-              <div className="bg-white p-8 rounded-3xl text-center">🏆 First RSVP</div>
-              <div className="bg-white p-8 rounded-3xl text-center">🔥 100 Points</div>
-              <div className="bg-white p-8 rounded-3xl text-center">🎤 Event Host</div>
-            </div>
-          </div>
-        )}
+  <div>
+    <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
+      <Award /> My Badges
+    </h2>
+
+    {/* Badges Grid */}
+    <div className="grid grid-cols-3 gap-6">
+      {badges.map((badge, i) => (
+        <div key={i} className="bg-white p-8 rounded-3xl text-center hover:scale-105 transition">
+          <div className="text-5xl mb-3">{badge.icon}</div>
+          <p className="font-semibold">{badge.name}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* QR Code Box */}
+    <div className="mt-12 bg-white p-10 rounded-3xl text-center shadow-xl">
+      <QrCode size={80} className="mx-auto text-violet-600 mb-4" />
+      <p className="text-lg font-semibold">Show this QR at event entry</p>
+
+      <div className="mx-auto mt-6 w-56 h-56 bg-black text-white flex items-center justify-center text-xs font-mono rounded-2xl">
+        CAMPUS-HUB-2026<br />
+        VERIFIED-STUDENT
+      </div>
+
+      <p className="text-sm text-gray-500 mt-4">
+        (Demo QR – real app will scan)
+      </p>
+    </div>
+  </div>
+)}
 
         {/* Profile Modal */}
         {showProfileModal && (
