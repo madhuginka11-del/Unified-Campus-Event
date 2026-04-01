@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-<<<<<<< HEAD
+ HEAD
 import "./App.css";
 import { Calendar, Users, Trophy, Plus, QrCode, Settings, User, Bell, Star , Award, QrCode} from "lucide-react";
 
@@ -70,7 +70,7 @@ function App() {
   const [themeColor, setThemeColor] = useState("#7c3aed"); // vibrant purple
   const [isOrganizer, setIsOrganizer] = useState(false);
   const [notifications, setNotifications] = useState([]);
-=======
+
 
 function App() {
   const eventsData = [
@@ -96,11 +96,11 @@ function App() {
       setPoints(points + 10);
     }
   };
->>>>>>> 3c4ee7bb365311489ecb7876985fa04540f79cdc
+ 3c4ee7bb365311489ecb7876985fa04540f79cdc
 
   // Load from localStorage
   useEffect(() => {
-<<<<<<< HEAD
+ HEAD
     const savedRegistered = JSON.parse(localStorage.getItem("registeredEvents")) || [];
     const savedPoints = JSON.parse(localStorage.getItem("points")) || 245;
     const savedProfile = JSON.parse(localStorage.getItem("profile")) || { name: "Moon", email: "moon@jain.ac.in" };
@@ -435,7 +435,7 @@ function App() {
           </div>
         </div>
       )}
-=======
+
     const savedEvents =
       JSON.parse(localStorage.getItem("registeredEvents")) || [];
     const savedPoints =
@@ -492,11 +492,9 @@ function App() {
       {registeredEvents.map((e) => (
         <p key={e.id}>{e.title}</p>
       ))}
->>>>>>> 3c4ee7bb365311489ecb7876985fa04540f79cdc
+ 3c4ee7bb365311489ecb7876985fa04540f79cdc
     </div>
   );
 }
 
 export default App;
-      
-  
